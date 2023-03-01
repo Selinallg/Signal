@@ -36,7 +36,7 @@ static void* invoke_crash(void *arg){
     read(notifier,&data,sizeof data);
     jmethodID id = (*env)->GetStaticMethodID(env,callClass, "callNativeException", "(ILjava/lang/String;)V");
 //    jstring nativeStackTrace  = (*env)->NewStringUTF(env,backtraceToLogcat());
-    jstring nativeStackTrace = (*env)->NewStringUTF(env,"");
+    jstring nativeStackTrace = (*env)->NewStringUTF(env,"nativeStackTrace......");
     jint signal_tag = data;
     (*env)->CallStaticVoidMethod(env,callClass, id,signal_tag,nativeStackTrace);
     (*env)->DeleteLocalRef(env,nativeStackTrace);

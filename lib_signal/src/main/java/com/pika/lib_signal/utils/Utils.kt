@@ -60,17 +60,19 @@ object Utils {
 
         //append logs
         var br: BufferedReader? = null
-        var line: String
+        var line: String? = null
         try {
             val process = ProcessBuilder().command(command).start()
             br = BufferedReader(InputStreamReader(process.inputStream))
             while (br.readLine().also { line = it } != null) {
-                if (withPid || line.contains(pidLabel)) {
-                    sb.append(line).append("\n")
+                if (line != null) {
+                    if (withPid || line!!.contains(pidLabel)) {
+                        sb.append(line).append("\n")
+                    }
                 }
             }
         } catch (e: Exception) {
-           e.printStackTrace()
+            e.printStackTrace()
         } finally {
             if (br != null) {
                 try {

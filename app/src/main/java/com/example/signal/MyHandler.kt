@@ -23,7 +23,7 @@ class MyHandler : CallOnCatchSignal {
             field.isAccessible = true
             val message = field.get(queue) as Message
             // 注意！！！这里应该根据实际逻辑判断，比如在前台的话就相应的判断，比如超出5s，这里只是简单比较演示
-            return message.`when` < SystemClock.uptimeMillis() - 5000
+            return message.`when` < SystemClock.uptimeMillis() - 10000
 
 // 可以dump这些消息
 //        val processesInErrorStates = systemService.processesInErrorState
@@ -66,9 +66,9 @@ class MyHandler : CallOnCatchSignal {
     override fun handleCrash(context: Context,signal:Int,logcat:String) {
 
         Log.e(TAG, "发生了crash，信号是$signal 重启")
-        Log.e(TAG,"logcat start -----------------------")
+        Log.e(TAG,"-------------------------logcat start -----------------------")
         Log.e(TAG,logcat)
-        Log.e(TAG,"logcat end   -----------------------")
+        Log.e(TAG,"-------------------------logcat end   -----------------------")
 
 
         val restart: Intent? =
